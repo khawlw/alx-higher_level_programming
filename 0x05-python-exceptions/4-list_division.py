@@ -1,24 +1,22 @@
 #!/usr/bin/python3
 def list_division(my_list_1, my_list_2, list_length):
-    new_list = []
+    result = []
 
     for i in range(list_length):
         try:
-            new_list.append(my_list_1[i] / my_list_2[i])
+            quotient = my_list_1[i] / my_list_2[i]
         except ZeroDivisionError:
-            new_list.append(0)
-            print('division by 0')
-            continue
+            print("division by 0")
+            quotient = 0
         except IndexError:
-            new_list.append(0)
-            print('out of range')
-            continue
+            print("out of range")
+            quotient = 0
         except TypeError:
             new_list.append(0)
-            print('wring type')
-            continue
+            print("wrong type")
+            quotient = 0
         finally:
-            pass
+            result.append(quotient)
 
-        return new_list
+            return result
 

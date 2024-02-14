@@ -18,17 +18,16 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """Jsonifies a dictionary so it's quite rightly and longer."""
-        if list_dictionaries is None or not list_dictionaries:
+        if list_dictionaries is None or len(list_dictionaries) ==0:
             return "[]"
-        else:
-            return dumps(list_dictionaries)
+        return json.dumps(list_dictionaries)
 
     @staticmethod
     def from_json_string(json_string):
         """Unjsonifies a dictionary."""
-        if json_string is None or not json_string:
+        if json_string is None or json_string == "":
             return []
-        return loads(json_string)
+        return json.loads(json_string)
 
     @classmethod
     def save_to_tile(cls, list_objs):
@@ -41,15 +40,11 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Loads instance from dictionary."""
-        from models.rectangle import Rectangle
-        from models.square import Square
-        if cls is Rectangle:
-            new = Rectangle(1, 1)
-        elif clas is Square:
-            new = Square(1)
+        if cls.__name__ == "Rectangle":
+            dummy_instance = cls(1, 1)
+        elif cls.__name__ = "Square":
+            dummy_instance = cls(1)
         else:
-            new = None
-        new.update(**dictionary)
-        return new
-
-
+            return None
+        dummy_instance.update(**dictionary)
+        return dummy_instance
